@@ -9,11 +9,11 @@ var parentForm = parent.parent.document.getElementById("instance");
 var parentFormWindow = parentForm.contentWindow;
 
 if (parentFormWindow) { // only run when this var is defined
-    var harnessFamilyField = parentFormWindow.getFieldByName("harness_fam");
+    // get the fields you want to toggle
     var modelYearField = parentFormWindow.getFieldByName("model_year");
     var programPhaseField = parentFormWindow.getFieldByName("program_phase");
     
-    var relatedItems = parentItem.getItemsByXPath("//Item[@type='lr_issue_program']");
+    var relatedItems = parentItem.getItemsByXPath("//Item[@type='issue_program']");
     var relatedCount = relatedItems.getItemCount();
     var classifications = [];
     for (let i = 0; i < relatedCount; ++i) {
@@ -33,12 +33,10 @@ if (parentFormWindow) { // only run when this var is defined
     var hasWiring = classifications.includes("Wiring");
     
     if (hasWiring) {
-        harnessFamilyField.style.visibility = 'visible';
         modelYearField.style.visibility = 'visible';
         programPhaseField.style.visibility = 'visible';  
     }
     else {
-        harnessFamilyField.style.visibility = 'hidden';
         modelYearField.style.visibility = 'hidden';
         programPhaseField.style.visibility = 'hidden';
     }
